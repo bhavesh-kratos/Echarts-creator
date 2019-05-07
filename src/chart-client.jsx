@@ -11,8 +11,7 @@ class Chart extends React.Component {
     }
     componentDidMount() {
 
-        let {config} = this.props;
-        console.log('cahrtt configg', config)
+        let {config} = this.props;        
         let chart = echart.init(document.getElementById("chart"), !!config.theme ? config.theme : 'default');
         chart.setOption(config.options);
     }

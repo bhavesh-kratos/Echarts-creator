@@ -45,7 +45,6 @@ let axisFields = {
 
 function configurator(chartSubType, options, setOptions, chartInitialization, stackName, xAxisDimension) {
   let createLineConfig = (dataset) => {
-    console.log('datasett', dataset)
     if (!!dataset) {
       return [{
         type: 'line',
@@ -187,7 +186,6 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
           return {
             type: 'scatter',
             symbolSize: (data) => {
-              console.log('somedatt scatter', data)
               return 50;
             },
             label: {
@@ -202,7 +200,6 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
             itemStyle: {
               normal: {
                 shadowBlur: 10,
-                // shadowColor: 'rgba(25, 100, 150, 0.5)',
                 shadowColor: 'rgba(0, 0, 0, 0.4)',
                 shadowOffsetY: 5,
                 color: new echart.graphic.RadialGradient(0.4, 0.3, 1, [{
@@ -226,8 +223,6 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
       return {
         ...options,
         dataZoom: [{ type: 'inside' }, { type: 'slider' }],
-        // yAxis: {},
-        // xAxis: {},
         xAxis: {
           type: "time",
           scale: true
@@ -240,9 +235,6 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
         series: [{
           type: "candlestick",
           encode: {
-            // x: 'date',
-            // y: ['product', '2015', '2016', '2017'],
-            // tooltip: ["open", "high", "low", "close"]
           }
         }]
       };
@@ -310,16 +302,11 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
   switch (chartSubType) {
     case 'line-simple':
       newSeries = createLineConfig(options.dataset);
-      console.log('lineeee', newSeries)
-      // setOptions(null, ['series'], newLineSeries);
       break;
     case 'area-stack':
-      console.log('lineeee areaa')
       newSeries = createAreaStackConfig(options.dataset);
-      // setOptions(null, ['series'], newLineAreaSeries);
       break;
     case 'line-step':
-      console.log('lineeee stepp')
       newSeries = createLineStepConfig(options.dataset);
       break;
     case 'bar-y-category-stack':
@@ -345,8 +332,6 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
         seriesValue = [...seriesValue, { type: this.state.chartType }]
       }
       this.setOptions(null, ['series'], seriesValue)
-    // return;
-    // console.log('DOING NOTHING IS BETTER THAN DOING SENSELESS')
   }
 
   this.setState({
@@ -383,7 +368,6 @@ function configurator(chartSubType, options, setOptions, chartInitialization, st
           options: newOptions,
           orientation: 'horizontal'
         }, () => {
-          console.log('state', this.state)
         })
     }
     this.state.chartSubType !== 'custom-gantt-flight' && chartInitialization("main", options.dataset);
@@ -400,42 +384,6 @@ let chartIcons = {
   // 'treemap': (props) => <Treemap {...props} />,
   'custom': (props) => <Gantt {...props} />,
 }
-
-
-//todo: to be removed
-// let dummyDataset = {
-
-//   "options": {
-//     legend: {
-//       type: 'plain',
-//       right: 10,
-//       orient: 'vertical',
-//       data: []
-//     },
-//     tooltip: {
-//       trigger: 'axis',
-//       axisPointer: {
-//         type: 'cross',
-//         label: {
-//           backgroundColor: '#6a7985'
-//         },
-//       }
-//     },
-//     dataset: {
-//       dimensions: ['product', '2015', '2016', '2017', '2018', 'date'],
-//       source: [
-//         { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7, '2018': 53.3, 'date': '2018-01-09 14:30:00' },
-//         { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1, '2018': 69.3, 'date': '2018-01-09 20:50:00' },
-//         { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5, '2018': 43.8, 'date': '2018-01-09 18:10:00' },
-//         { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1, '2018': 83.1, 'date': '2018-01-09 19:35:00' }
-//       ]
-//     },
-//     xAxis: { type: 'category' },
-//     yAxis: {},
-//     series: [{ type: 'line' }],
-//     dataZoom: [{ type: 'inside' }, { type: 'slider' }]
-//   }
-// }
 
 let initialState = {
   currentPoint: 0,
@@ -467,8 +415,6 @@ class ChartCreator extends React.Component {
     this.state = initialState;
     this.containerRef = React.createRef();
     this.fileInput = React.createRef();
-
-    // this.handleFileSubmit = this.handleFileSubmit.bind(this);
     this.configurator = configurator.bind(this);
   }
   // "Object", "string", "boolean", "*", "Color", "number", "Array", "Function"
@@ -490,19 +436,10 @@ class ChartCreator extends React.Component {
         return response.json();
       })
       .then(function (myJson) {
-        // console.log(JSON.stringify(myJson, replacer));
         me.setState({
           data: JSON.parse(JSON.stringify(myJson, replacer))
         });
       });
-    // this.setChartConfigurators();
-
-    // this.chartInitialization("main", dummyDataset);
-    // this.setState({
-    //   dimensions: ['product', '2015', '2016', '2017', '2018', 'date'],
-    //   dataInfo: [{ name: 'product', type: 'STRING' }, { name: '2015', type: 'NUMBER' }, { name: '2016', type: 'NUMBER' }, { name: '2017', type: 'NUMBER' }, { name: '2018', type: 'NUMBER' }, { name: 'date', type: 'TIME' }],
-    //   parentMounted: true
-    // })
   }
 
   componentWillUnmount() {
@@ -518,14 +455,12 @@ class ChartCreator extends React.Component {
   }
 
   chartInitialization = (elementId, dataset, theme = null) => {
-    console.log('thmeeeee', theme, this.state)
     !!this.state.chart && this.state.chart.dispose();
     let chart = echart.init(document.getElementById(elementId), !!this.state.theme ? this.state.theme : 'default');
     this.setState({
       chart
     }, () => {
       this.setState(dataset, () => {
-        // this.setOptions("series", "type", "bar")
         this.state.chart.setOption(this.state.options)
       });
     });
@@ -568,9 +503,7 @@ class ChartCreator extends React.Component {
     reader.onload = function (e) {
       var data = new Uint8Array(e.target.result);
       var workbook = XLSX.read(data, { type: 'array' });
-      console.log('heree', workbook)
       workbook.SheetNames.forEach(function (sheetName) {
-        // Here is your object
         var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
         me.setState({
           dataInfo: _.map(XL_row_object[0], (val, key) => { return { name: key, type: (typeof val).toUpperCase() } })
@@ -590,7 +523,6 @@ class ChartCreator extends React.Component {
   renderData = () => {
     if (this.state.data !== undefined) {
       let { data } = this.state;
-      // let data = JSON.parse(this.state.data);
       return Object.keys(data.option.properties).map((dat, index) => {
         return (
           <div key={dat}>
@@ -610,7 +542,6 @@ class ChartCreator extends React.Component {
           </div>
         );
       });
-      // return <div>{JSON.stringify(data.option.properties)}</div>
     }
   };
 
@@ -618,10 +549,8 @@ class ChartCreator extends React.Component {
     let path = [];
     let findPath = (target) => {
       let target1 = target;
-      // console.log('target2', target1)
       do {
         let dat = target1.getAttribute('data');
-        // console.log('datt', parentPropertyName, dat)
         // todo: make a condition to not go beyond the last parent
         if (dat !== null) {
           path.unshift(dat);
@@ -631,12 +560,11 @@ class ChartCreator extends React.Component {
       while (target1 !== null && !!target1.getAttribute('data') || target1.parentElement !== null)
     }
 
-    // console.log('eventttt', event, parentPropertyName);
     const target = event.target;
     const propertyValue = target.type === "checkbox" ? target.checked : target.value;
     const propertyName = target.name;
     findPath(target)
-    // console.log('targetpar', target.parentElement.parentElement.parentElement.parentElement);
+
     this.setOptions(parentPropertyName, path, propertyValue);
   };
 
@@ -647,9 +575,7 @@ class ChartCreator extends React.Component {
     properties,
     parentPropertyName
   ) => {
-    // console.log('namme', parentPropertyName, name)
-    let type1 = type[0]; // reconfigure this
-    // let defaultValue =
+    let type1 = type[0]; // reconfigure this    
     switch (type1) {
       case "Object":
       case "*":
@@ -720,7 +646,7 @@ class ChartCreator extends React.Component {
           />
         );
       default:
-        console.log("no type");
+        console.log("Has no type?");
     }
   };
 
@@ -728,7 +654,6 @@ class ChartCreator extends React.Component {
     let series = this.state.options.series;
     const value = e.target.checked;
 
-    console.log('value', value)
     if (value)
       series = series.map(dat => {
         return { ...dat, stack: 'Bar Stack' }
@@ -746,7 +671,6 @@ class ChartCreator extends React.Component {
     let series = this.state.options.series;
     const value = e.target.checked;
 
-    console.log('value', value)
     if (value)
       series = series.map(dat => {
         return { ...dat, stack: 'Bar Stack' }
@@ -796,7 +720,6 @@ class ChartCreator extends React.Component {
   }
 
   setSingleAxisChartConfigs = (propertyName, propertyValue) => {
-    console.log('nam-->', propertyName, typeof (propertyValue))
     if (this.state.options.dataset.source.length < MAX_LENGTH_SINGLEAXIS) {
       if (propertyName === 'yaxis') {
         let dataset = _.groupBy(this.state.options.dataset.source, (value) => { return value[propertyValue] });
@@ -822,12 +745,8 @@ class ChartCreator extends React.Component {
               coordinateSystem: 'singleAxis',
               type: 'scatter',
               data: dat.map(val => {
-                console.log('dattt', dat)
                 return val[propertyValue]
               }),
-              // symbolSize: function (dataItem) {
-              //   return this.state.singleAxisSymbolSize ? dataItem[this.state.singleAxisSymbolSize] * 2 : dataItem[this.state.singleAxisSymbolSize] * 2;
-              // }
             }
           });
           this.setState({
@@ -907,8 +826,7 @@ class ChartCreator extends React.Component {
   }
   renderChartSpecificControls = (chartName) => {
     switch (chartName) {
-      case 'line-step':
-        console.log('stepppepepepe')
+      case 'line-step':        
         return <div>
           <h3>Step type:</h3> &nbsp;
           <Dropdown
@@ -923,8 +841,7 @@ class ChartCreator extends React.Component {
               })
             } />
         </div>
-      case 'bar-y-category-stack':
-        console.log('bar yy')
+      case 'bar-y-category-stack':        
         return <div>
           <h3>Dimension:</h3> &nbsp;
           <Dropdown
@@ -935,8 +852,7 @@ class ChartCreator extends React.Component {
             onChange={(e, { value }) => this.setState({ yAxisDimension: [value] }, () => {
               let newSeries = this.state.options.series.map(val => {
                 return { ...val, encode: { ...val.encode, y: value } }
-              })
-              console.log('newww serieeessss', newSeries);
+              })              
               this.setOptions(null, ['series'], newSeries);
             })}
             options={
@@ -956,14 +872,6 @@ class ChartCreator extends React.Component {
             onChange={this.handleStackedConfig}
           />
           <br />
-          {/* <h3 style={{ display: 'inline-block' }}>Show label</h3> &nbsp;
-          <Input
-            type="checkbox"
-            name={'show-label'}
-            checked={this.state. || false}
-            size="large"
-            onChange={this.handleLabelConfig}
-          /> */}
         </div>
       case 'pie-custom':
         return <div>
@@ -1022,7 +930,6 @@ class ChartCreator extends React.Component {
             placeholder='Select Size dimension'
             selection
             style={{ width: '250px' }}
-            // defaultValue={'start'}
             onChange={(e, { value }) => this.setState({
               options: { ...this.state.options, symbolSizeVar: value }
             }, () => {
@@ -1031,10 +938,6 @@ class ChartCreator extends React.Component {
                 return { ...val, symbolSize: (data) => { let { symbolSizeVar } = options; return data[symbolSizeVar] } }
               })
               this.setOptions(null, ['series'], newSeries)
-              // this.setOptions('series', ['symbolSize'], this.state.options.series.map(val => {
-              //   return { ...val, symbolSize: (data) => { console.log('bubble data', data); let { symbolSizeVar } = options; return data[symbolSizeVar] } }
-              // })
-              // )
             }
             )}
             options={
@@ -1064,7 +967,6 @@ class ChartCreator extends React.Component {
                     return {
                       ...dat,
                       symbolSize: (dataItem) => {
-                        console.log('dataitemm', dataItem)
                         let { multiplier } = options;
                         let { symbolSizeVar } = options;
                         return dataItem[symbolSizeVar] ? dataItem[symbolSizeVar] * parseFloat(multiplier) : dataItem * parseFloat(multiplier);
@@ -1105,7 +1007,6 @@ class ChartCreator extends React.Component {
             placeholder='Select Size dimension'
             selection
             style={{ width: '250px' }}
-            // defaultValue={{ key: this.state.options.series.symbolSize, value: String(key.name), text: key.name }}
             onChange={(e, { value }) => this.setSingleAxisChartConfigs('symbolSize', value)}
             options={
               !!this.state.dataInfo && !!this.state.dataInfo && _.map(this.state.dataInfo.filter(dat => dat.type === 'NUMBER'), (key) =>
@@ -1127,20 +1028,8 @@ class ChartCreator extends React.Component {
               this.setSingleAxisChartConfigs('multiplier', value)
             }}
           />
-
-          {/* <h3>X-Axis coordinates:</h3> &nbsp; 
-            <Dropdown
-            placeholder='Select Axis ticks:'
-            selection
-            style={{ width: '250px' }}
-            defaultValue={'start'}
-            onChange={(e, { value }) => this.setOptions('series', ['symbolSize'], (data) => { return data[value] })}
-            options={
-              !!this.state.dataInfo && !!this.state.dataInfo && _.map(this.state.dataInfo.filter(dat => dat.name !== this.state.yAxisDimension && dat.type === 'STRING'), (key) =>
-                ({ key: key.name, value: String(key.name), text: key.name }))} /> */}
         </div>
-      default:
-        console.log('blehhh');
+      default:        
         return null;
     }
   }
@@ -1270,12 +1159,9 @@ class ChartCreator extends React.Component {
       case 'area-stack':
       case 'line-step':
       default:
-        // let values = Object.assign([...(!!this.state.options.series.encode && !!this.state.options.series.encode.y) ? this.state.options.series.encode.y : []], { [idx]: value })
         let series = !!this.state.options.series.length ? this.state.options.series.map(val => {
-          console.log('thiss', this.state.options.series[0])
           return { ...val, encode: { ...val.encode, x: value } }
         }) : [{ type: this.state.chartType, encode: { x: value } }];
-        console.log('serrriess', series)
         this.setOptions(null, ['series'], series);
         this.setOptions('xAxis', ['0'], {
           ...this.state.options.xAxis[0],
@@ -1595,21 +1481,16 @@ class ChartCreator extends React.Component {
   renderAdvancedControls = (properties = null) => {
     if (this.state.data !== undefined) {
       let { data } = this.state;
-      // let data = JSON.parse(this.state.data);
-
       let pointKeys = Object.keys(data.option.properties);
       let point = Object.values(data.option.properties)[
         this.state.currentPoint
       ];
-      // console.log('propertiess', properties);
       let properties1 = !!properties
         ? Object.keys(properties)
         : Object.keys(point.properties)
 
       return properties1.map((dat, index) => {
-        // console.log("dat", dat);
         let propertyValue = !!properties ? properties[dat] : point.properties[dat];
-        // console.log("prope", propertyValue);
         return (
           <div key={dat} data={dat} style={{ marginBottom: "10px" }}>
             {dat}&nbsp;&nbsp;
@@ -1628,10 +1509,8 @@ class ChartCreator extends React.Component {
   };
 
   setOptions = (parentPropertyName, propertyPath, propertyValue) => {
-    console.log('pathhy', propertyPath)
 
     let path = (parentPropertyName !== null) ? [parentPropertyName, ...propertyPath] : [...propertyPath];
-    // console.log('pat')
     this.setState(
       {
         options: _.set(
@@ -1641,11 +1520,10 @@ class ChartCreator extends React.Component {
         )
       },
       () => {
-        console.log('after setoption', this.state);
-        if (this.state.chart) {
-          // console.log(this.state.options);
+        if (this.state.chart){
           this.state.chart.setOption(this.state.options);
         }
+        console.log('after setOptions', this.state)
       }
     );
   };
@@ -1680,8 +1558,6 @@ class ChartCreator extends React.Component {
   }
 
   setChartDataSet = (dataset) => {
-    // console.log('settinggg', dataset, this.state.options)
-    console.log('datasettt', dataset)
     this.setState({
       options: {
         ...this.state.options,
@@ -1692,7 +1568,6 @@ class ChartCreator extends React.Component {
       multiplexAxisDimension: [''],
     }, () => {
       this.state.chartSubType !== 'custom-gantt-flight' && this.configurator(this.state.chartSubType, this.state.options, this.setOptions, this.chartInitialization, 'some chart', this.state.xAxisDimension)
-      // this.state.chartSubType !== 'custom-gantt-flight' && this.chartInitialization("main", this.state.options.dataset)
     });
 
   }
