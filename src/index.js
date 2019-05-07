@@ -12,7 +12,7 @@ import Bar from './icons/bar-chart';
 import Line from './icons/line-chart';
 import Pie from './icons/pie-chart';
 import XLSX from 'xlsx';
-import GanttChart from "./gantt";
+// import GanttChart from "./gantt";
 import "./styles.css";
 
 let MAX_LENGTH_SINGLEAXIS = 1000;
@@ -1652,7 +1652,7 @@ class ChartCreator extends React.Component {
                 }}
               >
                 <div id="main" style={{ background: 'white', marginLeft: '10px', display: this.state.chartSubType !== 'custom-gantt-flight' ? 'block' : 'none', height: `${document.querySelector('.chart-creator') && document.querySelector('.chart-creator').offsetHeight - 175}px` }} />
-                {this.state.chartSubType === 'custom-gantt-flight' && this.chartDeInitialization() && <GanttChart updateConfig={this.updateConfig} druidData={this.state.options.dataset.source} gantDimensions={this.state.gantDimensions} initializeOnGanttUnmount={this.initializeOnGanttUnmount} gantDataSource={this.state.gantDataSource} gantViewMode={this.state.gantViewMode} />}
+                {/* {this.state.chartSubType === 'custom-gantt-flight' && this.chartDeInitialization() && <GanttChart updateConfig={this.updateConfig} druidData={this.state.options.dataset.source} gantDimensions={this.state.gantDimensions} initializeOnGanttUnmount={this.initializeOnGanttUnmount} gantDataSource={this.state.gantDataSource} gantViewMode={this.state.gantViewMode} />} */}
               </div>
             </div>
           </Sidebar.Pusher>

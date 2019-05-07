@@ -1,5 +1,5 @@
 {
-  "name": "charts-creator",
+  "name": "echarts-creator",
   "version": "0.0.2",
   "description": "Chart creator for creating some specific charts using echarts library and frappe-gantt for gantt chart.",
   "keywords": [],
