@@ -1,0 +1,39 @@
+
+#main {
+  width: calc(100% - 440px);
+  /* height: calc(100% - 300px); */
+  margin-bottom: 5px;
+  margin-left: 27px !important;
+}
+.chart-creator {
+  font-family: sans-serif;
+  text-align: center;
+  background: rgb(31, 30, 30);
+  height: 100vh;
+}
+
+.datasource-portal{
+  position: absolute !important; 
+  margin-top: 0 !important;
+  top: 0;
+  /* width: 100%;  */
+  overflow-y: scroll !important;
+  z-index: 1000;
+  background: white;
+  /* height: 100vh; */
+  /* width: calc(100vw - 530px); */
+  /* margin-left: 10px !important; */
+}
+
+.chart-pusher{
+  border-top: 1px solid white;
+  padding-top: 10px;
+}
+
+.wide-sidebar{
+  width: 290px;
+}
+
+.scrolling.dimmable>.dimmer{
+  position: absolute !important;
+}

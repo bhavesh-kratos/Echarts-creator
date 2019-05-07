@@ -1,0 +1,12 @@
+.container {
+    /* width: 80%; */
+    margin: 0 50px; 
+  width: calc(100vw - 700px);
+  height: calc(100vh - 260px);
+  background: 'white';
+  overflow-y: scroll;
+}
+/* custom class */
+.bar-milestone {
+    fill: tomato;
+}

@@ -1,0 +1,32 @@
+{
+  "name": "charts-creator",
+  "version": "0.0.2",
+  "description": "Chart creator for creating some specific charts using echarts library and frappe-gantt for gantt chart.",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "echarts": "4.1.0",
+    "frappe-gantt": "^0.3.0",
+    "lodash": "4.17.11",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-scripts": "2.0.3",
+    "semantic-ui-react": "^0.86.0",
+    "xlsx": "^0.14.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
