@@ -1690,5 +1690,5 @@ export class ChartEditor extends React.Component {
   }
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<ChartEditor />, rootElement);
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<ChartEditor />, rootElement);
