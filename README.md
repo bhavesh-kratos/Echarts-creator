@@ -1,15 +1,17 @@
 # Echarts-creator
 A React component to create and view selected set of charts from popular echarts library. This component provides an interface to the user to configure a chart from the selected options and its using e-charts and frappe-gantt underneath to generate the charts. 
 
-### Data Input method ###
+### Supported data Input types ###
 You can upload csv, xlsx mime type or any other file formats mentioned here https://www.npmjs.com/package/xlsx#file-formats, as it uses xlsx library to read data from the uploaded files.
+You can also customize method for inputting the data.
 
-### Charts types at this moment ###
+### Charts types present at this moment ###
 line: basic line, dynamic data + time axis, stacked area chart, step line
 bar: bar-y-category-stack
 pie: calendar pie(not implemented), pie
 scatter: bubble, scatter on single axis
 candlestick: basic, large scale candlestick
+treemap (not implemented)
 Gantt chart
 
 
