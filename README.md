@@ -6,12 +6,12 @@ You can upload csv, xlsx mime type or any other file formats mentioned here http
 You can also customize method for inputting the data.
 
 ### Charts types present at this moment ###
-line: basic line, dynamic data + time axis, stacked area chart, step line . 
-bar: bar-y-category-stack . 
-pie: calendar pie(not implemented), pie . 
-scatter: bubble, scatter on single axis . 
-candlestick: basic, large scale candlestick . 
-treemap (not implemented) . 
+line: basic line, dynamic data + time axis, stacked area chart, step line &nbsp;
+bar: bar-y-category-stack &nbsp;
+pie: calendar pie(not implemented), pie &nbsp;
+scatter: bubble, scatter on single axis &nbsp; 
+candlestick: basic, large scale candlestick &nbsp;
+treemap (not implemented) &nbsp;
 Gantt chart 
 
 
